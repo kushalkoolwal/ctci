@@ -8,14 +8,19 @@ typedef int boolean;
 /* Return TRUE if unique characters, else return FALSE */
 boolean check_unique (char *s) {
 
-	char tmp = '\0';
-	int i;
+	
+	int charset[127];	/*assuming we have ASCII set of 127 characters */
+	int i, val;
 
 	i = 0;
-	while (s[i] != '\0') {		
-		if (s[i] == tmp)
+	while (s[i] != '\0') {
+		val = s[i];		/* comment this line to get a "bus error" */
+		/* we have seen this character before return FALSE */
+		if (charset[val] == 1)
 			return FALSE;
-		tmp = s[i++];
+		/* store '1' for a brand new character */
+		charset[val] = 1;
+		i++;
 	}
 	return TRUE;
 }
@@ -41,7 +46,7 @@ void main (void) {
 	printf("Enter a string to check for unique characters:");
 	/* scanf adds '\0' character automatically */
 	scanf("%s", buffer);
-	if (check_unique_novar (buffer))
+	if (check_unique (buffer))
 		printf("String has unique characters\n");
 	else
 		printf("String has repeating characters\n");
