@@ -21,6 +21,19 @@ boolean check_unique (char *s) {
 	return TRUE;
 }
 
+/* same as above function but without extra variables */
+boolean check_unique_novar (char *s) {
+
+	int i;
+
+	i = 0;
+	while (s[i] != '\0') {		
+		if (i>=1 && s[i] == s[i-1])
+			return FALSE;
+		i++;
+	}
+	return TRUE;
+}
 
 void main (void) {
 
@@ -29,7 +42,7 @@ void main (void) {
 	printf("Enter a string to check for unique characters:");
 	/* scanf adds '\0' character automatically */
 	scanf("%s", buffer);
-	if (check_unique(buffer))
+	if (check_unique_novar (buffer))
 		printf("String has unique characters\n");
 	else
 		printf("String has repeating characters\n");
