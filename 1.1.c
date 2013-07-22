@@ -8,7 +8,7 @@ typedef int boolean;
 /* Return TRUE if unique characters, else return FALSE */
 boolean check_unique (char *s) {
 
-	char tmp='\0';
+	char tmp = '\0';
 	int i;
 
 	i = 0;
