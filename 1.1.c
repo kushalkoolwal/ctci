@@ -15,8 +15,7 @@ boolean check_unique (char *s) {
 	while (s[i] != '\0') {		
 		if (s[i] == tmp)
 			return FALSE;
-		tmp = s[i];
-		i++;
+		tmp = s[i++];
 	}
 	return TRUE;
 }
