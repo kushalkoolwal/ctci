@@ -25,15 +25,25 @@ boolean check_unique (char *s) {
 	return TRUE;
 }
 
-/* same as above function but without extra variables */
+/* same as above function but without extra variables
+   we use a bit vector (int check_bv) to check for repeating characters
+   sizeof(int) on this machine is 32, therefore we can easily accomodate a-z
+   on this system.
+ */
 boolean check_unique_novar (char *s) {
 
-	int i;
+	int i, val, check_bv=0;
 
 	i = 0;
-	while (s[i] != '\0') {		
-		if (i>=1 && s[i] == s[i-1])
+	while (s[i] != '\0') {
+
+		/* ASCII of 'a' is 97 */
+		val = s[i] - 'a';
+		/* check status of bit 'val' */
+		if ((check_bv & (1 << val)) > 0)		
 			return FALSE;
+		/* set the bit 'val' */
+		check_bv = check_bv | (1 << val);
 		i++;
 	}
 	return TRUE;
@@ -46,7 +56,7 @@ void main (void) {
 	printf("Enter a string to check for unique characters:");
 	/* scanf adds '\0' character automatically */
 	scanf("%s", buffer);
-	if (check_unique (buffer))
+	if (check_unique_novar (buffer))
 		printf("String has unique characters\n");
 	else
 		printf("String has repeating characters\n");
