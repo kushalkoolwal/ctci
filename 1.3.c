@@ -9,9 +9,8 @@ void remove_dup_v2 (char *s) {
 	int i, j, k;
 	char ch;
 
-	i=j=k=0;
-
 	/* scan all characters in the string */	
+	i = 0;
 	while (s[i] != '\0') {
 		ch = s[i];
 		/* scan all characters from 'i' onwards to see if 'ch' is present */
